@@ -1,0 +1,77 @@
+@charset "UTF-8";
+html {
+  font-size: 8px; }
+  @media screen and (min-width: 576px) {
+    html {
+      font-size: 10px; } }
+
+body {
+  background-color: #fffff;
+  font-family: "Roboto";
+  color: #373737;
+  font-size: 1.6rem;
+  line-height: 1.2;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 2rem; }
+
+* {
+  box-sizing: border-box; }
+
+main {
+  max-width: 50em;
+  margin: 0.5rem;
+  padding-top: 1em; }
+  @media screen and (min-width: 576px) {
+    main {
+      margin: 0 auto; } }
+
+header {
+  font-size: 200%;
+  background-color: #333;
+  padding: 2rem;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2); }
+  header a {
+    text-decoration: none; }
+  header sup {
+    font-style: italic;
+    font-size: 50%; }
+
+a {
+  color: #ff7100; }
+  a.spicy:before {
+    content: "🔥"; }
+  a.spicy:after {
+    content: "🔥"; }
+
+var {
+  font-family: "Roboto Mono";
+  font-style: normal; }
+
+body#index p#slogan {
+  font-size: 150%; }
+body#index ul#links {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex; }
+  body#index ul#links li {
+    flex-grow: 1;
+    margin: 0;
+    padding: 0;
+    text-align: center; }
+    body#index ul#links li a {
+      display: inline-block;
+      width: 10em;
+      background: #ff7100;
+      background: linear-gradient(135deg, #f1e767 0%, #feb645 100%);
+      border: 1px solid #ff7100;
+      padding: 0.1em 1em;
+      font-size: 200%;
+      cursor: pointer;
+      color: white;
+      text-decoration: none; }
+      body#index ul#links li a:hover {
+        color: #ff7100; }
+
+/*# sourceMappingURL=0xbtcpay.io.css.map */

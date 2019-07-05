@@ -1,0 +1,35 @@
+!!!
+%html
+  %head
+    %title
+      = [@title, "0xbtcpay.io"] * " : "
+    %link(rel="stylesheet" href="/0xbtcpay.io.css")
+    %link(href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700|Roboto+Mono:400,700&display=swap" rel="stylesheet")
+    %meta(charset="utf-8")
+    %meta(property="og:site_name" content="0xBTCpay.info")
+    - if @description
+      - raise "@description too long" if Sinatra::Base.environment == :development && @description.length > 160
+      %meta(name="description" content=@description)
+      %meta(name="og:description" content=@description)
+    - if @title
+      %meta(property="og:title" content=@title)
+    - else
+      %meta(property="og:title" content="0xBTCpay")
+    - if @label1 && @data1
+      %meta(name="twitter:label1" value=@label1)
+      %meta(name="twitter:data1" value=@data1)
+    - if @label2 && @data2
+      %meta(name="twitter:label2" value=@label2)
+      %meta(name="twitter:data2" value=@data2)
+    %meta(name="viewport" content="width=device-width, initial-scale=1")
+    %meta(http-equiv="Content-Language" content="en")
+  %body(id=@body_id)
+    %header
+      %a(href="/") <var>0x</var>BTCpay
+    %main
+      - if @auto_h1.nil?
+        - if @title
+          %h1= @title
+        - else
+          %h1 0xBTCpay
+      != yield.en0xify
