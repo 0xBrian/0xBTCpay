@@ -1,7 +1,7 @@
 #!/bin/bash
 
 source /usr/local/share/chruby/chruby.sh
-chruby ruby-2.6.3
+chruby ruby
 
 case $1 in
   stream)
@@ -11,7 +11,7 @@ case $1 in
     RACK_ENV=production bundle exec ruby payments.rb
     ;;
   payments_worker)
-    bundle exec ruby payments_worker.rb
+    RACK_ENV=production bundle exec ruby payments_worker.rb
     ;;
   *)
     echo "err"
