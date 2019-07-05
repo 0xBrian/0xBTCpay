@@ -1,6 +1,5 @@
 require "haml"
 require "sinatra"
-require "sinatra/reloader"
 
 class String
   def en0xify
