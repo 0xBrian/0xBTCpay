@@ -1,0 +1,16 @@
+stream:
+  # WebSockets ethereum EVM endpoint (e.g., parity, infura)
+  # e.g.: wss://mainnet.infura.io/v3/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  provider:
+payments:
+  # Only localhost and clients from these IP addresses will be allowed to add
+  # payments.
+  # e.g.: ["8.8.8.8", "9.9.9.9"]
+  ip_whitelist: []
+  port: 8888
+payments_worker:
+  # HTTP ethereum EVM endpoint (e.g., parity, infura)
+  # e.g.: https://mainnet.infura.io/v3/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  provider:
+  every: 60
+  threads: 10

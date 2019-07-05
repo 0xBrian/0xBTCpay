@@ -1,0 +1,17 @@
+!!!
+%html
+  %head
+    %title
+      = [@title, "0xBitcoin Spicy Meme Shop"] * " : "
+    %link(rel="stylesheet" href="/demo.css")
+    %link(href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700|Roboto+Mono&display=swap" rel="stylesheet")
+  %body(id=@body_id)
+    %header
+      %a(href="/") 0xBitcoin Spicy Meme Shop
+      <sup>demo</sup>
+    %main
+      - if @title
+        %h1= @title
+      - else
+        %h1 0xBitcoin Spicy Meme Shop
+      != yield

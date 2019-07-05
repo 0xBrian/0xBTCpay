@@ -1,0 +1,17 @@
+[Unit]
+Description=payments_worker
+Wants=network-online.target
+Requires=mysql.service
+After=mysql.service
+
+[Service]
+Type=simple
+User=_0xbtcpay
+Group=_0xbtcpay
+WorkingDirectory=/home/0xbtcpay/0xbtcpay
+ExecStart=/home/0xbtcpay/0xbtcpay/run.sh payments_worker
+Restart=always
+TimeoutSec=10
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,15 @@
+[Unit]
+Description=stream
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=_0xbtcpay
+Group=_0xbtcpay
+WorkingDirectory=/home/0xbtcpay/0xbtcpay
+ExecStart=/home/0xbtcpay/0xbtcpay/run.sh stream
+Restart=always
+TimeoutSec=10
+
+[Install]
+WantedBy=multi-user.target

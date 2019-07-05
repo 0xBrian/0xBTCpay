@@ -1,0 +1,120 @@
+- @title = "Order #{@id}"
+%p#message
+%canvas(id="qr")
+%div#metamask
+%script(src="/qrious.min.js")
+%script(src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.34/dist/web3.min.js")
+:javascript
+  var canvas = document.getElementById("qr");
+  var message = document.getElementById("message");
+  var mmDiv = document.getElementById("metamask");
+  var button = null;
+  var metamaskAdded = false;
+  var sentWithMetamask = false;
+  var qr;
+
+  function removePaymentControls() {
+    if (canvas != null) {
+      canvas.parentElement.removeChild(canvas);
+      canvas = null;
+    }
+    if (button != null) {
+      button.parentElement.removeChild(button);
+      button = null;
+    }
+  }
+  function poll() {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        var data = JSON.parse(this.responseText);
+        if (data.paid_at == null && data.seen_at == null && !sentWithMetamask) {
+          message.innerText = `Awaiting payment. Please send ${data.amount} 0xBTC to ${data.address}. You can scan the QR code with a mobile wallet, or you can copy and paste the address, or you can pay with Metamask if you have it.`;
+          if (qr == null) {
+            qr = new QRious({
+              element: canvas,
+              size: 250,
+              value: `ethereum:${data.address}?value=${Math.floor(data.amount * 1e8)}`
+            });
+          }
+          if (!metamaskAdded) {
+            addMetamask(data.address, data.amount);
+          }
+        } else {
+          if (data.seen_at != null) {
+            message.innerText = "Payment detected! Please wait...";
+            removePaymentControls();
+          }
+          if (data.paid_at != null) {
+            clearInterval(timerId);
+            message.innerText = "Payment complete!";
+            var a = document.createElement("a");
+            var linkText = document.createTextNode("View transaction on Etherscan");
+            a.appendChild(linkText);
+            a.href = `https://etherscan.io/tx/${data.tx_hash}`;
+            message.parentElement.appendChild(a);
+          }
+        }
+      }
+    };
+    xhr.open("GET", `http://${document.location.hostname}:8888/#{@id}/status.json`, true);
+    xhr.send();
+  }
+
+  function pad(s, padding) {
+    return ("0".repeat(padding) + s).substr(-padding);
+  }
+  function itoh(i, padding = 0, x = true) {
+    return (x === true ? "0x" : "") + ("0".repeat(padding) + i.toString(16)).substr(-padding);
+  }
+  function payWithMetamask(provider, toAddress, amount) {
+    let gasHex = itoh(70000);
+    let satoastis = web3.toBigNumber(amount)*1e8;
+
+    let dataMethod = "0xa9059cbb"; // erc20 transfer
+    let dataAddress = pad(toAddress.substr(-40), 64);
+    let dataAmount = itoh(satoastis, 64, false);
+    let data = dataMethod + dataAddress + dataAmount;
+
+    provider.enable()
+    .then(function (accounts) {
+      let params = {
+        "from": accounts[0],
+        "to": "0xb6ed7644c69416d67b522e20bc294a9a9b405b31",
+        "value": "0x0",
+        "gas": gasHex,
+        "data": data
+      };
+      ethereum.sendAsync({
+        method: 'eth_sendTransaction',
+        params: [params],
+        from: accounts[0], // Provide the user's account to use.
+      }, function (e, result) {
+          console.log("e =", e, "result =", result);
+          if (e || result.error) {
+            console.log("couldn't send payment with metamask", e, result);
+            return;
+          }
+          console.log("payment sent with metamask", result);
+          message.innerText = "Payment sent with MetaMask. Please wait ...";
+          removePaymentControls();
+          sentWithMetamask = true;
+        }
+      );
+    })
+    .catch(function (reason) {
+      console.log(reason);
+    });
+  }
+  function addMetamask(address, amount) {
+    if (typeof window.ethereum !== 'undefined' || (typeof window.web3 !== 'undefined')) {
+      const provider = window['ethereum'] || window.web3.currentProvider;
+      button = document.createElement("button");
+      button.innerText = "Pay with MetaMask";
+      button.onclick = function() { payWithMetamask(provider, address, amount) };
+      mmDiv.appendChild(button);
+    }
+    metamaskAdded = true;
+  }
+  poll();
+  var timerId = setInterval(poll, 1000);

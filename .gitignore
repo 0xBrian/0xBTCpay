@@ -1,0 +1,4 @@
+vendor
+.bundle
+database.yml
+config.yml

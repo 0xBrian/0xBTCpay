@@ -1,0 +1,18 @@
+development:
+  adapter: mysql2
+  host: localhost
+  database: 0xbtcpay
+  user: 0xbtcpay
+  password: 0xbtcpay
+production:
+  adapter: mysql2
+  host: localhost
+  database: 0xbtcpay
+  user: 0xbtcpay
+  password: 0xbtcpay
+test:
+  adapter: mysql2
+  host: localhost
+  database: 0xbtcpay_test
+  user: 0xbtcpay
+  password: 0xbtcpay
