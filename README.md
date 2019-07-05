@@ -9,7 +9,7 @@ There is a demo web shop called *0xBitcoin Spicy Meme Shop* that helps to
 explain how to integrate 0xBTCpay.
 
 - Demo web shop: <https://demo.0xbtcpay.io/>
-- Demo web shop code: <https://https://github.com/0xBrian/0xbtcpay-demo>
+- Demo web shop code: <https://github.com/0xBrian/0xbtcpay-demo>
 
 - [Installation and setup](INSTALLATION.md)
 - [Integration with your web shop](INTEGRATION.md)
