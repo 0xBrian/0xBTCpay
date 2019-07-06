@@ -1,6 +1,6 @@
 stream:
   # WebSockets ethereum EVM endpoint (e.g., parity, infura)
-  # e.g.: wss://mainnet.infura.io/v3/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  # e.g.: wss://mainnet.infura.io/ws/v3/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
   provider:
 payments:
   # Only localhost and clients from these IP addresses will be allowed to add
