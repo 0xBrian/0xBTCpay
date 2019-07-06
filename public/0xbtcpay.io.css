@@ -1,6 +1,6 @@
 @charset "UTF-8";
 html {
-  font-size: 8px; }
+  font-size: 10px; }
   @media screen and (min-width: 576px) {
     html {
       font-size: 10px; } }
@@ -20,8 +20,8 @@ body {
 
 main {
   max-width: 50em;
-  margin: 0.5rem;
-  padding-top: 1em; }
+  margin: 1rem;
+  padding: 1rem 0; }
   @media screen and (min-width: 576px) {
     main {
       margin: 0 auto; } }
@@ -36,6 +36,14 @@ header {
   header sup {
     font-style: italic;
     font-size: 50%; }
+  header a#github {
+    display: block;
+    float: right;
+    background-image: url(/github.svg);
+    color: #00000000;
+    width: 1em;
+    height: 1em;
+    overflow: hidden; }
 
 a {
   color: #ff7100; }
@@ -48,17 +56,21 @@ var {
   font-family: "Roboto Mono";
   font-style: normal; }
 
-body#index p#slogan {
-  font-size: 150%; }
+body#index a#_0xbitcoin {
+  margin: 1em;
+  margin-top: 0;
+  float: right; }
 body#index ul#links {
   margin: 0;
   padding: 0;
   list-style: none;
-  display: flex; }
+  display: flex;
+  flex-wrap: wrap; }
   body#index ul#links li {
     flex-grow: 1;
     margin: 0;
     padding: 0;
+    margin-bottom: 1rem;
     text-align: center; }
     body#index ul#links li a {
       display: inline-block;
@@ -73,5 +85,11 @@ body#index ul#links {
       text-decoration: none; }
       body#index ul#links li a:hover {
         color: #ff7100; }
+body#index p#more {
+  margin-top: 2rem;
+  text-align: center; }
+  body#index p#more a {
+    display: block;
+    font-size: 150%; }
 
 /*# sourceMappingURL=0xbtcpay.io.css.map */

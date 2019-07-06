@@ -1,25 +1,34 @@
 - @title = "0xBTCpay: Open-Source Payment Gateway for 0xBitcoin"
 - @auto_h1 = false
 - @body_id = "index"
-%h1 0xBTCpay
-%p#slogan Free Open-Source Payment Gateway for 0xBitcoin
+%h1
+  Free Open-Source Payment Gateway for 0xBitcoin
+%a#_0xbitcoin(href="https://0xbitcoin.org/")
+  %img(src="/0xbitcoin.svg")
 %p
-  Now your web store can accept payment in 0xBitcoin (0xBTC). You can install
-  0xBTCpay on your own server or on a rented server at companies like
-  <a href="https://digitalocean.com/">Digital Ocean</a> and
-  <a href="https://linode.com/">Linode</a>.
+  Now your web store can accept payment in 0xBitcoin (0xBTC).
 %p
   It's free.
   %strong 0xBTCpay does not charge any fees.
+  You run your own instance of 0xBTCpay.
+%p
+  You can use your existing server or rent a server at companies like
+  <a href="https://digitalocean.com/">Digital Ocean</a> and
+  <a href="https://linode.com/">Linode</a>.
 %h2 What does 0xBTCPay do?
 %p
-  It is a bridge between the Ethereum network and traditional web stores.
+  0xBTCpay is a bridge between the Ethereum network and traditional web stores.
 %p
-  When a customer wants to pay with 0xBitcoin at your web store, your web store
-  passes the customer to your 0xBTCpay instance to handle the payment. Your
-  0xBTCpay instance will monitor the customer's 0xBitcoin transaction, and it
-  will tell your web store when the order has been paid. Then your web store can
-  mark the order as paid and finish processing the order as usual.
+  0xBTCpay enables web stores to handle 0xBitcoin payments with simple web
+  calls, rather than having to understand Ethereum, similar to the way web
+  stores process credit cards already.
+%h2 How does it work?
+%p
+  When your customer wants to pay with 0xBitcoin, your web store passes the
+  customer to your 0xBTCpay instance to handle the payment.  0xBTCpay monitors
+  the customer's 0xBitcoin transaction, and tells your web store when the
+  payment is complete. Then your web store can finish processing the order as
+  usual.
 %h2 Links
 %p
   You can try out our demo shop <a class="spicy" href="https://demo.0xbtcpay.io/">The
@@ -33,3 +42,6 @@
     %a(href="https://demo.0xbtcpay.io/") Demo
   %li
     %a(href="https://github.com/0xBrian/0xbtcpay/") GitHub
+%p#more
+  More info about 0xBitcoin:
+  %a(href="https://0xbitcoin.org/") 0xBitcoin.org
