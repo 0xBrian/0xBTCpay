@@ -54,7 +54,7 @@ class PaymentsWorker < Thread
   end
 
   def unpaid_payments(exclude:[])
-    Payment.where(paid_at: nil).exclude(id: exclude.to_a)
+    Payment.where(paid_at: nil).exclude(id: exclude.to_a).where { created_at > Time.now - 86400 }
   end
 
   def poll
@@ -163,7 +163,7 @@ class Checker < Thread
   def check(payment)
     retries_with_backoff(payment) do
       bal = balance(payment.address)
-      log "  bal=#{bal}"
+      log "  bal(#{payment.address})=#{bal}"
       payment.update(seen_at: payment.seen_at || Time.now) if bal > 0
       if bal >= payment.amount
         tr = fetch_tx_data(payment)
