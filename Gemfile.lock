@@ -59,7 +59,7 @@ GEM
       rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
-    rake (12.3.2)
+    rake (13.0.1)
     redis (4.1.2)
     rlp (0.7.3)
     rspec (3.8.0)
