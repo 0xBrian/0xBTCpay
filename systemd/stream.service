@@ -9,7 +9,12 @@ Group=_0xbtcpay
 WorkingDirectory=/home/0xbtcpay/0xbtcpay
 ExecStart=/home/0xbtcpay/0xbtcpay/run.sh stream
 Restart=always
-TimeoutSec=10
+# num sec systemd will wait before forcing service to obey
+TimeoutStopSec=2
+# num sec systemd will wait before restarting failed service
+RestartSec=2
+# 0 means disable restart rate limiting so that systemd will never give up trying to restart
+StartLimitIntervalSec=0
 
 [Install]
 WantedBy=multi-user.target
